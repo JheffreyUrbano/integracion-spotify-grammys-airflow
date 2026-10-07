@@ -63,3 +63,7 @@ Es importante aclarar que este proyecto debe correrse en **Linux** o en caso de 
 6.3. En Airflow, encender (unpause) y ejecutar (Trigger) el DAG llamado workshop2_pipeline
 
 6.4. Una vez que todas las tareas del DAG estén en verde oscuro (éxito), abrir el archivo reporte_final.ipynb en VSCode o Jupyter y ejecutar todas las celdas para visualizar el dashboard analítico directamente desde la base de datos.
+
+Los archivos originales los puedes encontrar en los siguientes links:
+- **Spotify Tracks Dataset**: https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset
+- **Grammy Awards**: https://www.kaggle.com/datasets/unanimad/grammy-awards
