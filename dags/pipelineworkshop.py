@@ -1,7 +1,8 @@
 import os
 from dotenv import load_dotenv
 from airflow import DAG
-from airflow.providers.standard.operators.python import PythonOperator
+from airflow.operators.python import PythonOperator
+from airflow.operators.bash import BashOperator
 from datetime import datetime
 import pandas as pd
 import pandera.pandas as pa

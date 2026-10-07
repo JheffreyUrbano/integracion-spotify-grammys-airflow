@@ -4,6 +4,21 @@ eda_spotify_dataset.html
 eda_the_grammy_awards.html
 eda_rapido.py
 
+# Ignorar todos los archivos de las otras etapas que no sean raw
+/data/*
+!/data/
+!/data/*/
+!/data/raw/
+!/data/raw/**
+!/data/gold/
+/data/gold/**
+!/data/profiling/
+/data/profiling/**
+!/data/quarantine/
+/data/quarantine/**
+!/data/staging/
+/data/staging/**
+
 
 # para airflow
 # Logs y temporales

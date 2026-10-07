@@ -1,0 +1,21 @@
+# Orquestación
+apache-airflow==2.10.2
+
+# Manipulación y análisis de datos
+pandas
+
+# Base de datos
+sqlalchemy
+psycopg2-binary
+
+# Calidad y perfilado de datos
+pandera
+ydata-profiling
+
+# Variables de entorno
+python-dotenv
+
+# Visualización y notebooks
+matplotlib
+seaborn
+ipykernel
