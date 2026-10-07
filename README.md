@@ -57,6 +57,7 @@ Es importante aclarar que este proyecto debe correrse en **Linux** o en caso de 
     chmod +x scripts/start_airflow.sh
     bash scripts/start_airflow.sh
     ```
+    
 6.2. Acceder a la interfaz web de Airflow ingresando a http://localhost:8080 (el usuario y la contraseña se imprimirán en las últimas líneas de la terminal).
 
 6.3. En Airflow, encender (unpause) y ejecutar (Trigger) el DAG llamado workshop2_pipeline
