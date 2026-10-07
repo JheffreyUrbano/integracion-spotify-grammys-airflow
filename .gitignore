@@ -1,9 +1,31 @@
+# archivos
+Workshop002.pdf
+eda_spotify_dataset.html
+eda_the_grammy_awards.html
+eda_rapido.py
+
+
+# para airflow
+# Logs y temporales
+/logs/
+airflow-*.log
+*.log
+airflow.cfg
+airflow.db*
+unittests.db
+webserver_config.py
+*.pid
+*.lock
+.airflow
+
+
+
+# variables de entorno
 .env
 .env.local
 .env.*.local
-Workshop002.pdf
 
-# para python
+# para python un ignore general de internet
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

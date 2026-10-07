@@ -1,9 +1,10 @@
 import os
+from dotenv import load_dotenv
 from airflow import DAG
-from airflow.operators.python import PythonOperator
-from airflow.utils.dates import days_ago
+from airflow.providers.standard.operators.python import PythonOperator
+from datetime import datetime
 import pandas as pd
-import pandera as pa
+import pandera.pandas as pa
 from sqlalchemy import create_engine
 from pathlib import Path
 import sys
@@ -26,7 +27,11 @@ GOLD_CSV_PATH = DATA_DIR / "gold/final_dataset.csv"
 
 
 # CONEXION A LA BASE DE DATOS desde el .env
-DB_URI = os.getenv("DB_URI")
+db_user = os.getenv("POSTGRES_USER")
+db_password = os.getenv("POSTGRES_PASSWORD")
+db_name = os.getenv("POSTGRES_DB")
+
+DB_URI = f"postgresql+psycopg2://{db_user}:{db_password}@localhost:5432/{db_name}"
 
 
 # TAREAS INDEPENDIENTES (Y SECUENCIALES para no perderme jaja)
@@ -34,6 +39,12 @@ DB_URI = os.getenv("DB_URI")
 def read_csv_task():
     import pandas as pd
     df = pd.read_csv(RAW_SPOTIFY)
+
+    #después cambiaré esta función para buscar el artista que falta por album
+    for column in ["artists", "track_name"]:
+        if column in df.columns:
+            df[column] = df[column].fillna("Desconocido")
+
     STAGING_SPOTIFY.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(STAGING_SPOTIFY, index=False)
 
@@ -77,7 +88,7 @@ def transform_and_merge_task():
     df_spotify['artist_clean'] = df_spotify['artists'].astype(str).str.split(';').str[0].str.lower().str.strip()
     
     # Transformación: Limpiar artista (Grammys)
-    df_grammys['artist_clean'] = df_grammys['worker'].astype(str).str.lower().str.strip()
+    df_grammys['artist_clean'] = df_grammys['workers'].astype(str).str.lower().str.strip()
     
     # Merge (Left Join para no perder las canciones de Spotify)
     df_merged = pd.merge(df_spotify, df_grammys, on='artist_clean', how='left')
@@ -104,7 +115,7 @@ with DAG(
     dag_id="workshop2_pipeline",
     default_args=default_args,
     schedule=None,
-    start_date=days_ago(1),
+    start_date=datetime(2024, 1, 1),
     catchup=False,
 ) as dag:
 
