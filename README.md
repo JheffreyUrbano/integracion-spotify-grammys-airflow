@@ -52,7 +52,7 @@ Es importante aclarar que este proyecto debe correrse en **Linux** o en caso de 
    ```bash
    pip install -r requirements.txt
    ```
-    Otorgar permisos de ejecución e iniciar el script maestro. Este script levantará el contenedor de PostgreSQL, inyectará los datos semilla (Grammys) y configurará e iniciará Apache Airflow automáticamente:
+   Otorgar permisos de ejecución e iniciar el script maestro. Este script levantará el contenedor de PostgreSQL, inyectará los datos semilla (Grammys) y configurará e iniciará Apache Airflow automáticamente:
     ```bash
     chmod +x scripts/start_airflow.sh
     bash scripts/start_airflow.sh
